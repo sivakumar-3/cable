@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Cable Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121212;--s:#1c1c1f;--s2:#26262a;--bd:#34343a;--t:#f5f5f5;--m:#9a9a9a;--cta:#283593;--ctah:#3949ab;--ok:#16A34A;--okl:#14301f;--wn:#F59E0B;--er:#DC2626;--erl:#3a1717;--in:#2563EB;--inl:#16264a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--t);font-family:'DM Sans',system-ui,sans-serif;font-size:14px}
+svg{width:20px;height:20px;fill:currentColor;flex:none}button{font:inherit;cursor:pointer}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+nav.sb{background:var(--s);border-right:1px solid var(--bd);padding:16px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.logo{font-weight:700;font-size:17px;padding:8px 10px 18px;display:flex;gap:10px;align-items:center}.logo b{background:var(--cta);border-radius:8px;padding:6px;display:flex}
+.nv{display:flex;gap:12px;align-items:center;padding:12px;border-radius:8px;color:var(--m);background:none;border:0;text-align:left;min-height:44px;font-weight:500}
+.nv:hover{background:var(--s2);color:var(--t)}.nv.on{background:var(--cta);color:#fff}
+main{padding:24px;max-width:1300px;width:100%}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}
+h1{margin:0;font-size:26px;font-weight:700}h2{font-size:16px;font-weight:600;margin:0 0 12px}.sub{color:var(--m);margin:4px 0 0}
+.mh{display:none}
+.sync{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--m)}
+.pill{padding:4px 10px;border-radius:99px;background:var(--inl);color:#7ba7ff;font-weight:500;font-size:12px}.pill.bad{background:var(--erl);color:#ff8a8a}
+.btn{background:var(--s2);color:var(--t);border:1px solid var(--bd);border-radius:8px;padding:0 16px;min-height:44px;font-weight:600;display:inline-flex;align-items:center;gap:8px;justify-content:center;transition:.15s}
+.btn:hover{background:#303036}.btn:active{transform:scale(.97)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.p{background:var(--cta);border-color:var(--cta);color:#fff;letter-spacing:.3px}.btn.p:hover{background:var(--ctah)}.btn.p:active{background:#1c2670}
+.btn.d{background:var(--er);border-color:var(--er);color:#fff}.btn.d:hover{background:#b91c1c}.btn.sm{min-height:36px;padding:0 12px;font-size:13px}
+.sr{position:relative;margin-bottom:20px}.sr svg{position:absolute;left:16px;top:17px;color:var(--m)}
+input,select,textarea{background:var(--s);border:1px solid var(--bd);color:var(--t);border-radius:8px;padding:0 14px;min-height:44px;font:inherit;width:100%}
+textarea{padding:12px;min-height:64px}input:focus,select:focus,textarea:focus{outline:2px solid var(--ctah);border-color:transparent}
+.sr input{padding-left:46px;min-height:54px;font-size:15px}
+.card{background:var(--s);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:20px}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}
+.st{background:var(--s);border:1px solid var(--bd);border-radius:12px;padding:14px}.st .l{color:var(--m);font-size:12px;display:flex;gap:6px;align-items:center}.st .v{font-size:26px;font-weight:700;margin-top:6px}
+.bd{display:inline-block;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.4px}
+.g{background:var(--okl);color:#4ade80}.r{background:var(--erl);color:#ff8a8a}.o{background:#3a2c0a;color:var(--wn)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse}th{text-align:left;color:var(--m);font-weight:600;font-size:12px;padding:10px 12px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--s);white-space:nowrap}
+td{padding:12px;border-bottom:1px solid var(--s2);vertical-align:middle}tbody tr:hover{background:var(--s2)}td small{display:block;color:var(--m)}
+.lk{color:var(--t);font-weight:600;cursor:pointer;text-decoration:none}.lk:hover{text-decoration:underline}
+.ac{display:flex;gap:8px;flex-wrap:wrap}
+.res{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tabs button{flex:1;max-width:140px}.tabs .btn.on{background:var(--cta);border-color:var(--cta)}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.ctl input{width:auto;flex:1;min-width:140px}
+.bars{display:flex;gap:3px;align-items:flex-end;height:120px;margin:10px 0 16px}.bars i{flex:1;background:var(--cta);border-radius:3px 3px 0 0;min-height:2px}.bars i:hover{background:var(--ctah)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.meter{height:12px;border-radius:6px;background:var(--er);overflow:hidden;margin:8px 0}.meter i{display:block;height:100%;background:var(--ok)}
+.empty{text-align:center;padding:36px 12px;color:var(--m)}.empty b{display:block;color:var(--t);font-size:16px;margin-bottom:4px}
+.sk{height:60px;border-radius:10px;background:linear-gradient(90deg,var(--s) 25%,var(--s2) 50%,var(--s) 75%);background-size:200% 100%;animation:sh 1.2s infinite;margin-bottom:10px}@keyframes sh{to{background-position:-200% 0}}
+.ov{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;z-index:50;padding:16px;animation:fi .15s}
+.md{background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:22px;width:100%;max-width:480px;max-height:92vh;overflow:auto;animation:up .2s}.md h2{font-size:19px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.kv div{color:var(--m);font-size:12px}.kv b{display:block;color:var(--t);font-size:14px;margin-top:2px;font-weight:500}
+.amt{background:var(--inl);border-radius:10px;padding:14px;font-size:18px;font-weight:700;margin:12px 0;text-align:center}
+.pm{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 12px}.pm button{padding:0 4px}.pm .on{background:var(--cta);border-color:var(--ctah)}
+.ok{text-align:center;padding:12px 0}.ok svg{width:64px;height:64px;color:var(--ok)}
+.toast{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--s2);border:1px solid var(--bd);border-left:4px solid var(--ok);padding:14px 18px;border-radius:8px;z-index:99;animation:up .2s;max-width:90vw}.toast.e{border-left-color:var(--er)}
+@keyframes fi{from{opacity:0}}@keyframes up{from{transform:translateY(14px);opacity:0}}
+.pg{display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px;color:var(--m)}
+.bn{display:none}.login{max-width:360px;margin:12vh auto;padding:16px}.login .card{display:grid;gap:12px}
+@media(max-width:1024px){.app{grid-template-columns:72px 1fr}.nv span,.logo span{display:none}.logo{justify-content:center;padding-inline:0}.stats{grid-template-columns:repeat(3,1fr)}main{padding:18px}}
+@media(max-width:767px){.app{grid-template-columns:1fr}nav.sb{position:fixed;left:0;top:0;width:260px;z-index:60;transform:translateX(-100%);transition:.2s}nav.sb.open{transform:none}nav.sb .nv span,nav.sb .logo span{display:inline}
+.mh{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--s);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:20;font-weight:700}.mh button{background:none;border:0;color:var(--t);min-width:44px;min-height:44px;display:flex;align-items:center}
+main{padding:14px 14px 90px}h1{font-size:21px}.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.res .btn{width:100%}.res>div:last-child{width:100%}
+.bn{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--s);border-top:1px solid var(--bd);z-index:30;padding-bottom:env(safe-area-inset-bottom,0px)}.bn button{flex:1;background:none;border:0;color:var(--m);min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;gap:2px}.bn .on{color:#8c9eff}
+.rt thead{display:none}.rt tr{display:block;background:var(--s2);border-radius:10px;margin-bottom:10px;padding:6px 4px}.rt td{display:flex;justify-content:space-between;gap:10px;border:0;padding:6px 10px;text-align:right}.rt td::before{content:attr(data-l);color:var(--m);font-size:12px;text-align:left}.rt td.a{display:block}.rt td.a::before{display:none}.rt .ac .btn{flex:1;min-height:44px}
+.ov{align-items:flex-end;padding:0}.md{border-radius:16px 16px 0 0;max-width:none}.toast{left:16px;right:16px;bottom:76px}.ctl input{min-width:100%}}
+</style><style>
+.st.click{cursor:pointer;position:relative;transition:.15s}.st.click:hover{transform:translateY(-2px);border-color:#5c6bc0;background:var(--s2)}.st .ar{position:absolute;right:12px;top:8px;color:var(--m);font-size:22px}
+.gsw{overflow:auto;max-height:540px;border:1px solid var(--bd);border-radius:8px}.gs{min-width:880px}.gs th,.gs td{border:1px solid var(--bd);padding:8px 10px;white-space:nowrap}.gs th{cursor:pointer;user-select:none;background:#222226;z-index:2}.gs tbody tr:nth-child(even){background:#19191c}.gs tbody tr:hover{background:var(--s2)}.gs tr.sl{background:#1b2347!important}.gs .r{text-align:right}.gs .c{text-align:center}.ck{width:18px;min-height:18px;height:18px;padding:0}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.fl select,.fl input{width:auto;flex:1;min-width:130px}.ftog{display:none}
+@media(max-width:767px){.ftog{display:inline-flex}.fl{display:none}.fl.open{display:flex}.fl select,.fl input{min-width:45%}.ac .btn{flex:1}}
+</style><style>.app{grid-template-columns:240px minmax(0,1fr)}main{min-width:0}html,body{overflow-x:hidden}
+.spin{width:14px;height:14px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;display:inline-block;animation:rot .6s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
+.pm{grid-template-columns:repeat(2,1fr)}.gsw{-webkit-overflow-scrolling:touch;max-width:100%}.gs{min-width:960px}
+.gs td:first-child,.gs th:first-child{position:sticky;left:0;background:#222226;z-index:3}
+.tabs button{min-width:84px}.stats{min-width:0}.st .v{overflow-wrap:anywhere}
+@media(max-width:1024px){.app{grid-template-columns:72px minmax(0,1fr)}}
+@media(max-width:767px){.app{grid-template-columns:minmax(0,1fr)}.tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.tabs button{flex:none}
+.pg{flex-wrap:wrap;justify-content:center!important}.btn{min-height:44px}.btn.sm{min-height:40px}.res>div:last-child .btn{margin:6px 0 0!important}.kv{grid-template-columns:1fr 1fr}.md{padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}}
+@media(max-width:420px){.stats{grid-template-columns:1fr 1fr;gap:8px}.st .v{font-size:22px}.sr input{font-size:14px}}
+@media(min-width:1600px){main{max-width:1500px}}
+</style><style>
+.gs th.r,.gs td.r{background:none;color:inherit}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}.btn.ok:hover{background:#15803d}
+.btn:disabled.busy{opacity:.9;cursor:progress}
+</style><style>
+.card{padding:10px;margin-bottom:12px}.st{padding:10px}.md{padding:14px;max-width:520px}
+[data-cid]{cursor:pointer}tr[data-cid]:hover{background:var(--s2)}tr[data-cid]:active{background:#2c2c32}.res[data-cid]:hover{border-color:#5c6bc0}
+.kv.cd{grid-template-columns:repeat(2,minmax(0,1fr))}.kv b{overflow-wrap:anywhere}.res{align-items:flex-start}
+
+.gs td.selcell,.gs th.selcell{width:40px;text-align:center;cursor:default}.ck{width:18px;height:18px;min-height:0;padding:0}
+</style><style>/* v8 design tokens + modal/touch/a11y */
+:root{--r-card:12px;--r-btn:8px;--r-in:8px;--p-card:10px;--gap:12px;--sh:0 8px 28px #0008}
+:focus-visible{outline:2px solid #8c9eff;outline-offset:2px}
+.ov{align-items:center!important;padding:12px!important;overscroll-behavior:contain}
+.md{position:relative;border-radius:var(--r-card)!important;max-width:560px!important;max-height:calc(100dvh - 24px);box-shadow:var(--sh);overscroll-behavior:contain}
+.md h2.mt{margin:0 0 10px;padding-right:48px;font-size:17px}
+.mx{position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;border-radius:10px;background:none;color:var(--m);font-size:28px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;transition:.15s}
+.mx:hover{background:var(--s2);color:var(--t)}.mx:active{background:#3a3a42;color:#fff;transform:scale(.94)}
+body.mo{overflow:hidden}
+.md .kv.cd{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px 12px;margin:8px 0}
+.kv.cd>div{min-width:0;padding-bottom:6px;border-bottom:1px solid var(--s2)}.kv.cd>.full{grid-column:1/-1}
+.kv.cd b{font-size:15px;font-weight:600;overflow-wrap:anywhere;word-break:break-word}
+@media(min-width:1024px){.md:has(.kv.cd){max-width:680px!important}.md .kv.cd{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:767px){.md{max-width:min(440px,100%)!important;padding:12px!important}.kv.cd b{font-size:14px}}
+.gs tr.sl td,.gs tr.sl td:first-child{background:#1e2550}
+.gsw,.tw{max-width:100%;overscroll-behavior-x:contain}
+.bk{display:none}
+@media(max-width:767px){.bk{display:block;position:fixed;inset:0;background:#0009;z-index:55}
+.btn.sm,.nv{min-height:44px}.ck{width:24px;height:24px}.gs td.selcell,.gs th.selcell{width:52px}.gs th{padding:12px 10px}
+.bn button,.mh button{min-height:48px}}
+.btn.busy{cursor:progress}
+</style></head><body><div id="root"></div>
+<script>
+const IC={dash:'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',ppl:'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',chk:'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',wrn:'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',blk:'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.9 7.9 0 014 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.9 7.9 0 0120 12c0 4.42-3.58 8-8 8z',pay:'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z',rep:'M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z',srch:'M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',syn:'M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0020 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 004 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z',set:'M12 8a4 4 0 100 8 4 4 0 000-8zm9 5v-2l-2.2-.5a7 7 0 00-.8-1.9l1.2-1.9-1.4-1.4-1.9 1.2a7 7 0 00-1.9-.8L13 3h-2l-.5 2.2a7 7 0 00-1.9.8L6.7 4.8 5.3 6.2l1.2 1.9a7 7 0 00-.8 1.9L3.5 11v2l2.2.5c.2.7.5 1.3.8 1.9l-1.2 1.9 1.4 1.4 1.9-1.2c.6.4 1.2.6 1.9.8L11 21h2l.5-2.2c.7-.2 1.3-.5 1.9-.8l1.9 1.2 1.4-1.4-1.2-1.9c.4-.6.6-1.2.8-1.9z',mnu:'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'};
+const ic=n=>`<svg viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
+const $=s=>document.querySelector(s);
+const iso=d=>new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const D=s=>new Date(s+'T00:00:00');const today=()=>iso(new Date());
+const fm=n=>{n=Number(n);return '₹'+(isFinite(n)?Math.round(n):0).toLocaleString('en-IN')};const od=c=>Math.max(0,Math.round((D(today())-D(c.dueDate))/864e5));
+// ---------- demo data (replace load() with /api/sheets call) ----------
+let sd=7;const rnd=()=>(sd=(sd*9301+49297)%233280)/233280;
+const FN=['Arjun','Priya','Karthik','Meena','Suresh','Lakshmi','Ravi','Divya','Murugan','Anitha','Senthil','Kavya','Ganesh','Revathi','Vijay','Deepa'],LN=['Kumar','Raj','Selvam','Devi','Pillai','Nair','Iyer','Babu','Rao','Murthy','Krishnan','Sundaram'];
+const AR=['Keeranur','Palani','Dharapuram'],SH='1A|Arun Kumar|9876543210|Keeranur|25719300137045;1B|Prakash|9876543211|Keeranur|25719300137037;1E|Suresh|9876543212|Keeranur|25719300129265;2A|Karthik|9876543213|Palani|25719300111594;2B|Mani|9876543214|Palani|25719300133333;2E|Saravanan|9876543215|Palani|25719300133267;3A|Murugan|9876543216|Dharapuram|25719300106057;3B|Dinesh|9876543217|Dharapuram|25719300106040;3E|Rajesh|9876543218|Dharapuram|25719300052293;4A|Vignesh|9876543219|Keeranur|25719300138761;4B|Bala|9876543220|Keeranur|25719300137334;4E|Mohan|9876543221|Palani|25719300125891;5A|Naveen|9876543222|Palani|25719300121486;5B|Gokul|9876543223|Dharapuram|25719300052962;5E|Senthil|9876543224|Dharapuram|25719300053820;6A|Ramesh|9876543225|Keeranur|25719300142367;6B|Praveen|9876543226|Keeranur|25719300139157;6E|Anand|9876543227|Palani|25719300130107;7A|Vijay|9876543228|Palani|25719300114622;7B|Dhanush|9876543229|Dharapuram|25719300112592;7E|Lokesh|9876543230|Dharapuram|25719300112014;8A|Santhosh|9876543231|Keeranur|25719300080369;8B|Ashok|9876543232|Palani|25719300052970;8E|Hari|9876543233|Dharapuram|25719430310298;9A|Jeeva|9876543234|Keeranur|25719300069263;9B|Ajith|9876543235|Palani|25719300118490'.split(';').map(r=>r.split('|')),PL=[['₹230',230],['₹250',250],['₹270',270],['₹400',400]],MT=['Cash','UPI'];
+let C=[],P=[],pid=1000;
+function pay(c,date,t,m){P.push({paymentId:'PAY-'+(pid++),customerId:c.customerId,customerName:c.name,package:c.monthlyAmount,amount:c.monthlyAmount,paymentDate:date,paymentTime:t,paymentMethod:m,status:'Success'})}
+function seed(){C=[];P=[];pid=1000;sd=7;for(let i=0;i<SH.length;i++){const pl=i==0?PL[1]:PL[i%4],st=i==0?1:i<12?0:i<21?1:2;
+const c={customerId:SH[i][0],name:SH[i][1],mobile:SH[i][2],address:SH[i][3],area:SH[i][3],connectionNumber:SH[i][4],plan:pl[0],package:pl[1],monthlyAmount:pl[1],paymentStatus:st?'Unpaid':'Paid',paymentDate:'',dueDate:'',userStatus:st==2?'Fault':'Active',paymentMethod:MT[i%4],notes:''};
+const base=st?32+Math.floor(rnd()*20):(i<4?0:Math.floor(rnd()*28));
+for(let k=(st?0:0);k<3;k++){const ago=base+k*30+(k?Math.floor(rnd()*3):0);pay(c,iso(addD(new Date(),-ago)),(9+Math.floor(rnd()*9))+':'+String(Math.floor(rnd()*60)).padStart(2,'0'),MT[(i+k)%4])}
+const last=P[P.length-3];c.paymentDate=last.paymentDate;c.dueDate=st?iso(addD(new Date(),-(1+Math.floor(rnd()*25)))):iso(addD(D(c.paymentDate),30));C.push(c)}}
+seed();
+const ST={view:'dash',q:'',page:1,sort:'name',per:'day',date:today(),from:iso(addD(new Date(),-14)),to:today(),pick:null,sync:{t:new Date(),ok:true,busy:false},user:null,drawer:false};
+try{ST.user=sessionStorage.getItem('u')}catch(e){}
+// ---------- helpers ----------
+const bd=(t,k)=>`<span class="bd ${k}">${t}</span>`;
+const pb=c=>bd(c.paymentStatus.toUpperCase(),c.paymentStatus=='Paid'?'g':'r'),ub=c=>bd(c.userStatus.toUpperCase(),c.userStatus=='Active'?'g':'r');
+const nm=c=>`<a class="lk" data-a="view" data-id="${c.customerId}">${c.name}</a><small>${c.customerId}</small>`;
+function acts(c){let h='';if(c.paymentStatus=='Unpaid')h+=`<button class="btn p sm" data-a="pay" data-id="${c.customerId}">${ic('pay')}Pay</button>`;if(c.paymentStatus=='Unpaid'&&c.userStatus=='Active')h+=`<button class="btn d sm" data-a="deact" data-id="${c.customerId}">${ic('blk')}Fault Box</button>`;if(c.paymentStatus=='Paid')h+=`<button class="btn sm" data-a="view" data-id="${c.customerId}">View</button>`;return `<div class="ac">${h}</div>`}
+function tbl(rows,cols,empty){if(!rows.length)return `<div class="empty"><b>${empty[0]}</b>${empty[1]||''}</div>`;return `<div class="tw"><table class="rt"><thead><tr>${cols.map(c=>`<th>${c[0]}`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr data-cid="${r.customerId}">${cols.map(c=>`<td class="${c[0]=='Actions'?'a':''}" data-l="${c[0]}">${c[1](r)}`).join('')}`).join('')}</tbody></table></div>`}
+const cc={id:['ID',c=>c.customerId],cu:['Customer',nm],mo:['Phone',c=>c.mobile],ar:['Area',c=>c.area],cn:['STB-number',c=>c.connectionNumber],pl:['Plan',c=>c.plan],am:['Amount',c=>fm(c.monthlyAmount)],pa:['Payment',pb],us:['Status',ub],due:['Due Date',c=>c.dueDate],ov:['Overdue',c=>od(c)+' days'],ac:['Actions',acts],pd:['Paid On',c=>c.paymentDate],pm:['Method',c=>c.paymentMethod]};
+const find=id=>C.find(c=>c.customerId==id);
+function toast(m,e){const t=document.createElement('div');t.className='toast'+(e?' e':'');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3000)}
+function match(q){q=q.trim().toLowerCase();return q?C.filter(c=>[c.name,c.customerId,c.mobile,c.connectionNumber,c.address,c.area].some(v=>v.toLowerCase().includes(q))):C}
+function result(c){return `<div class="card res"><div><div style="font-size:18px;font-weight:700">${c.name}</div><div style="color:var(--m);margin:4px 0">${c.customerId} · ${c.mobile} · ${c.connectionNumber}</div><div style="color:var(--m)">${c.area} · ${c.plan} ${fm(c.monthlyAmount)} · Due: ${c.paymentStatus=='Paid'?fm(0):fm(c.monthlyAmount)}</div><div style="margin-top:8px">${pb(c)} ${ub(c)}</div></div><div>${c.paymentStatus=='Unpaid'?`<button class="btn p" style="min-height:54px;min-width:180px;font-size:16px" data-a="pay" data-id="${c.customerId}">${ic('pay')}Pay</button>`:`<button class="btn" data-a="view" data-id="${c.customerId}">View profile</button>`}${c.paymentStatus=='Unpaid'&&c.userStatus=='Active'?`<button class="btn d" style="margin-left:8px" data-a="deact" data-id="${c.customerId}">Fault Box</button>`:''}</div></div>`}
+// ---------- reports ----------
+function rng(){const d=D(ST.date);if(ST.per=='day')return[ST.date,ST.date];if(ST.per=='week'){const m=addD(d,-((d.getDay()+6)%7));return[iso(m),iso(addD(m,6))]}if(ST.per=='month'){const a=new Date(d.getFullYear(),d.getMonth(),1);return[iso(a),iso(new Date(d.getFullYear(),d.getMonth()+1,0))]}return[ST.from,ST.to]}
+function report(){const[a,b]=rng();const days=[];for(let d=D(a);iso(d)<=b&&days.length<366;d=addD(d,1))days.push(iso(d));
+const rows=days.map(d=>{const ps=P.filter(p=>p.paymentDate==d);return{d,n:ps.length,s:ps.reduce((x,p)=>x+p.amount,0)}});const tn=rows.reduce((x,r)=>x+r.n,0),ts=rows.reduce((x,r)=>x+r.s,0),mx=Math.max(1,...rows.map(r=>r.s));
+const pick=ST.per=='day'?ST.date:ST.pick;const list=pick?P.filter(p=>p.paymentDate==pick):[];
+const tabs=['day','week','month','custom'].map(p=>`<button class="btn ${ST.per==p?'on':''}" data-a="per" data-id="${p}">${p=='custom'?'CUSTOM':p=='day'?'DAY':p=='week'?'WEEKLY':'MONTHLY'}</button>`).join('');
+const inp=ST.per=='custom'?`<input type="date" data-a="from" value="${ST.from}"><input type="date" data-a="to" value="${ST.to}">`:ST.per=='month'?`<input type="month" data-a="mon" value="${ST.date.slice(0,7)}">`:`<input type="date" data-a="date" value="${ST.date}">`;
+const dn=d=>D(d).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+return `<div class="tabs">${tabs}</div><div class="ctl">${inp}</div>
+<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))"><div class="st"><div class="l">Total Payments</div><div class="v">${tn}</div></div><div class="st"><div class="l">Total Collection</div><div class="v">${fm(ts)}</div></div>${ST.per!='day'?`<div class="st"><div class="l">Avg Daily Collection</div><div class="v">${fm(Math.round(ts/days.length))}</div></div>`:''}</div>
+${ST.per!='day'?`<div class="bars">${rows.map(r=>`<i title="${dn(r.d)}: ${fm(r.s)}" style="height:${r.s/mx*100}%"></i>`).join('')}</div>${tbl(rows.slice().reverse(),[['Date',r=>`<a class="lk" data-a="pick" data-id="${r.d}">${dn(r.d)}</a>`],['Payments',r=>r.n],['Collection',r=>fm(r.s)]],['No data'])}`:''}
+${pick?`<h2 style="margin-top:18px">Paid on ${dn(pick)}</h2>${tbl(list,[['Customer',r=>`<a class="lk" data-a="view" data-id="${r.customerId}">${r.customerName}</a>`],['Mobile',r=>(find(r.customerId)||{}).mobile],['Amount',r=>fm(r.amount)],['Time',r=>r.paymentTime],['Method',r=>r.paymentMethod]],['No payments','Nothing collected on this day.'])}`:''}`}
+// ---------- views ----------
+const NAV=[['dash','Dashboard','dash'],['cust','Customers','ppl'],['paid','Paid / Active Users','chk'],['unp','Unpaid Users','wrn'],['deact','Fault Box','blk'],['hist','Payment History','pay'],['rep','Reports','rep'],['set','Settings','set']];
+function sortC(a){const k=ST.sort;return a.slice().sort((x,y)=>k=='amount'?y.monthlyAmount-x.monthlyAmount:k=='date'?(y.paymentDate>x.paymentDate?1:-1):x.name.localeCompare(y.name))}
+function sortSel(){return `<select data-a="sort" style="width:auto"><option value="name">Sort: Name</option><option value="amount" ${ST.sort=='amount'?'selected':''}>Sort: Amount</option><option value="date" ${ST.sort=='date'?'selected':''}>Sort: Payment date</option></select>`}
+function body(){const v=ST.view,tp=today();
+if(ST.sync.busy)return `<div class="stats">${'<div class="sk"></div>'.repeat(6)}</div><div class="sk" style="height:240px"></div>`;
+if(v=='dash'){const un=C.filter(c=>c.paymentStatus=='Unpaid'),col=P.filter(p=>p.paymentDate==tp).reduce((x,p)=>x+p.amount,0);
+const S=[['Total Customers',C.length,'ppl'],['Paid Users',C.length-un.length,'chk'],['Unpaid Users',un.length,'wrn'],['Active Users',C.filter(c=>c.userStatus=='Active').length,'chk'],['Fault',C.filter(c=>c.userStatus!='Active').length,'blk'],["Today's Collection",fm(col),'pay']];
+return `<div class="sr">${ic('srch')}<input id="q" type="search" placeholder="Search customer by name, mobile, Box.no or STB-number..." value="${ST.q}" autocomplete="off"></div><div id="res">${resHtml()}</div>
+<div class="stats">${S.map(s=>`<div class="st"><div class="l">${ic(s[2])}${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>
+<div class="card"><h2>Unpaid Customers</h2>${tbl(un.slice(0,8),[cc.cu,cc.mo,cc.am,cc.due,cc.us,cc.ac],['No unpaid users','All customers are currently paid.'])}${un.length>8?`<div class="pg"><a class="lk" data-a="nav" data-id="unp">View all ${un.length} →</a></div>`:''}</div>
+<div class="card"><h2>Payment Overview</h2>${report()}</div>
+<div class="card"><h2>Recent Payments</h2>${tbl(P.slice().sort((a,b)=>(b.paymentDate+b.paymentTime).localeCompare(a.paymentDate+a.paymentTime)).slice(0,6),[['Customer',p=>p.customerName],['Amount',p=>fm(p.amount)],['Date',p=>p.paymentDate],['Method',p=>p.paymentMethod]],['No payments yet'])}</div>`}
+if(v=='cust'){const r=sortC(match(ST.q)),n=Math.ceil(r.length/10)||1;ST.page=Math.min(ST.page,n);
+return `<div class="ctl"><input id="q" type="search" placeholder="Search customers..." value="${ST.q}">${sortSel()}</div><div class="card">${tbl(r.slice((ST.page-1)*10,ST.page*10),[cc.id,cc.cu,cc.mo,cc.ar,cc.cn,cc.pl,cc.am,cc.pa,cc.us,cc.ac],['No customers found','No customers match your search.'])}<div class="pg"><button class="btn sm" data-a="pg" data-id="-1" ${ST.page<2?'disabled':''}>Prev</button>Page ${ST.page} / ${n}<button class="btn sm" data-a="pg" data-id="1" ${ST.page>=n?'disabled':''}>Next</button></div></div>`}
+if(v=='paid')return `<div class="ctl">${sortSel()}</div><div class="card">${tbl(sortC(C.filter(c=>c.paymentStatus=='Paid')),[cc.id,cc.cu,cc.mo,cc.cn,cc.pl,cc.am,cc.pd,cc.pm,cc.us],['No payments yet'])}</div>`;
+if(v=='unp')return `<div class="card">${tbl(C.filter(c=>c.paymentStatus=='Unpaid'),[cc.cu,cc.mo,cc.cn,cc.am,cc.due,cc.ov,cc.us,cc.ac],['No unpaid users','All customers are currently paid.'])}</div>`;
+if(v=='deact')return `<div class="card">${tbl(C.filter(c=>c.userStatus=='Fault'),[cc.cu,cc.mo,cc.cn,cc.am,cc.due,cc.pa,cc.us,cc.ac],['No fault boxes'])}</div>`;
+if(v=='hist')return `<div class="card">${tbl(P.slice().sort((a,b)=>(b.paymentDate+b.paymentTime).localeCompare(a.paymentDate+a.paymentTime)).slice(0,60),[['Box.no',p=>p.customerId],['Customer',p=>p.customerName],['Mobile',p=>(find(p.customerId)||{}).mobile],['Amount',p=>fm(p.amount)],['Date',p=>p.paymentDate],['Time',p=>p.paymentTime],['Method',p=>p.paymentMethod],['Status',p=>bd('SUCCESS','g')]],['No payments yet'])}</div>`;
+if(v=='rep'){const pd=C.filter(c=>c.paymentStatus=='Paid').length,ac=C.filter(c=>c.userStatus=='Active').length;
+return `<div class="card"><h2>Collection</h2>${report()}</div><div class="two"><div class="card"><h2>Paid vs Unpaid</h2><div class="meter"><i style="width:${pd/C.length*100}%"></i></div>${pd} paid · ${C.length-pd} unpaid</div><div class="card"><h2>Active vs Fault</h2><div class="meter"><i style="width:${ac/C.length*100}%"></i></div>${ac} active · ${C.length-ac} fault</div></div>`}
+return `<div class="card"><h2>Google Sheets connection</h2><p class="sub">Credentials stay on the server. Set these environment variables in your backend (never in client code):</p><pre style="background:var(--bg);padding:14px;border-radius:8px;overflow:auto">GOOGLE_SHEET_ID=...\nGOOGLE_SERVICE_ACCOUNT_EMAIL=...\nGOOGLE_PRIVATE_KEY=...\nSHEET_RANGE=Customers!A:N</pre><p class="sub">This preview runs on built-in demo data. Replace <code>syncSheets()</code> with a call to your secure <code>/api/sheets</code> route; the column order lives in one place (the Customer model).</p></div>`}
+function resHtml(){const q=ST.q.trim();if(!q)return '';const r=match(q).slice(0,5);return r.length?r.map(result).join(''):`<div class="card empty"><b>No customers found</b>No customers match your search.</div>`}
+function shell(){const cur=NAV.find(n=>n[0]==ST.view),sy=ST.sync;
+if(!ST.user)return `<div class="login"><h1 style="margin-bottom:16px">Cable Management</h1><div class="card" id="lf"><input name="u" placeholder="Admin username" value="admin" autocomplete="username"><input name="p" type="password" placeholder="Password" autocomplete="current-password"><button type="button" class="btn p" id="lgo">Sign in</button><small style="color:var(--m)">Demo login: admin / admin123 (use real server-side auth in production)</small></div></div>`;
+return `<div class="mh"><button data-a="drawer">${ic('mnu')}</button>Cable Management</div><div class="app"><nav class="sb ${ST.drawer?'open':''}"><div class="logo"><b>${ic('pay')}</b><span>Cable Mgmt</span></div>${NAV.map(n=>`<button class="nv ${ST.view==n[0]?'on':''}" data-a="nav" data-id="${n[0]}" title="${n[1]}">${ic(n[2])}<span>${n[1]}</span></button>`).join('')}</nav>
+<main><div class="top"><div><h1>${ST.view=='dash'?'Cable Management':cur[1]}</h1><p class="sub">${ST.view=='dash'?'Manage your cable customers and payments':'Cable customers & collections'}</p></div></div>${body()}</main></div>
+<div class="bn">${[['dash','Home','dash'],['cust','Customers','ppl'],['unp','Unpaid','wrn'],['rep','Reports','rep']].map(n=>`<button class="${ST.view==n[0]?'on':''}" data-a="nav" data-id="${n[0]}">${ic(n[2])}${n[1]}</button>`).join('')}</div>`}
+function draw(){const q=document.activeElement&&document.activeElement.id=='q';$('#root').innerHTML=shell();if(q){const e=$('#q');e.focus();e.setSelectionRange(99,99)}}
+// ---------- modals ----------
+function modal(h){closeM();const o=document.createElement('div');o.className='ov';o.id='ov';o.innerHTML=`<div class="md">${h}</div>`;o.onclick=e=>{if(e.target==o)closeM()};document.body.appendChild(o)}
+function closeM(){const o=$('#ov');if(o)o.remove()}
+let method='Cash',busy=false;
+function payModal(c){method='Cash';busy=false;modal(`<h2>Collect Payment</h2><div class="kv"><div>Customer<b>${c.name}</b></div><div>Box.no<b>${c.customerId}</b></div><div>Mobile<b>${c.mobile}</b></div><div>STB-number<b>${c.connectionNumber}</b></div><div>Plan<b>${c.plan}</b></div><div>Payment Date<b>${today()}</b></div></div><div class="amt">Amount to collect: ${fm(c.monthlyAmount)}</div><div style="color:var(--m);font-size:12px">Payment Method</div><div class="pm">${MT.map(m=>`<button class="btn sm ${m==method?'on':''}" data-a="meth" data-id="${m}">${m}</button>`).join('')}</div><textarea id="nt" placeholder="Notes (optional)"></textarea><div class="ac" style="margin-top:14px"><button class="btn" data-a="close" style="flex:1">Cancel</button><button class="btn p" id="cf" data-a="confirm" data-id="${c.customerId}" style="flex:2">Pay</button></div>`)}
+function confirmPay(id){if(busy)return;const c=find(id);if(!c||!c.monthlyAmount)return toast('Missing customer or amount',1);if(P.some(p=>p.customerId==id&&p.paymentDate==today()&&c.paymentStatus=='Paid'))return toast('Duplicate payment blocked',1);
+busy=true;const b=$('#cf');b.disabled=true;b.textContent='Processing…';const note=($('#nt')||{}).value;
+setTimeout(()=>{const n=new Date();c.paymentStatus='Paid';c.userStatus='Active';c.paymentDate=today();c.dueDate=iso(addD(n,30));c.paymentMethod=method;if(note)c.notes=note;pay(c,today(),n.getHours()+':'+String(n.getMinutes()).padStart(2,'0'),method);
+$('.md').innerHTML=`<div class="ok">${ic('chk')}<h2 style="margin-top:10px">Payment Successful</h2><p>${c.name} paid ${fm(c.monthlyAmount)} via ${method}.<br><b style="color:#4ade80">Customer is now Active</b></p><button class="btn p" data-a="close" style="width:100%">Done</button></div>`;draw();busy=false},700)}
+function profile(c){const ps=P.filter(p=>p.customerId==c.customerId).sort((a,b)=>b.paymentDate.localeCompare(a.paymentDate)),l=ps[0];
+modal(`<h2>${c.name}</h2><div>${pb(c)} ${ub(c)}</div><div class="kv"><div>Box.no<b>${c.customerId}</b></div><div>Mobile<b>${c.mobile}</b></div><div>Address<b>${c.address}</b></div><div>STB-number<b>${c.connectionNumber}</b></div><div>Plan<b>${c.plan} · ${fm(c.monthlyAmount)}</b></div><div>Due Date<b>${c.dueDate}</b></div><div>Last Payment<b>${l?l.paymentDate+' · '+fm(l.amount):'—'}</b></div><div>Total Paid<b>${fm(ps.reduce((x,p)=>x+p.amount,0))}</b></div></div><div style="color:var(--m);font-size:12px;margin-bottom:6px">Payment history</div>${ps.slice(0,6).map(p=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--s2)"><span>${p.paymentDate}</span><span>${p.paymentMethod}</span><b>${fm(p.amount)}</b></div>`).join('')||'<div class="empty">No payments yet</div>'}<div class="ac" style="margin-top:14px">${c.paymentStatus=='Unpaid'?`<button class="btn p" data-a="pay" data-id="${c.customerId}">Pay</button>`:''}${c.paymentStatus=='Unpaid'&&c.userStatus=='Active'?`<button class="btn d" data-a="deact" data-id="${c.customerId}">Fault Box</button>`:''}${c.userStatus=='Fault'?`<button class="btn" data-a="act" data-id="${c.customerId}">REPAIRED</button>`:''}</div>`)}
+function deactModal(c){modal(`<h2>Mark as Fault Box?</h2><p>This customer has an unpaid balance.<br>Mark this box as a Fault Box?</p><p style="color:var(--m)">${c.name} · ${fm(c.monthlyAmount)} due</p><div class="ac"><button class="btn" data-a="close" style="flex:1">Cancel</button><button class="btn d" data-a="deactgo" data-id="${c.customerId}" style="flex:1">Fault Box</button></div>`)}
+// ---------- sync (swap for fetch('/api/sheets')) ----------
+async function syncSheets(){ST.sync.busy=true;draw();try{await new Promise(r=>setTimeout(r,900));/* const res=await fetch('/api/sheets');C=validate(await res.json()); */ST.sync={t:new Date(),ok:true,busy:false};toast('Google Sheets synced')}catch(e){ST.sync={t:ST.sync.t,ok:false,busy:false};toast('Sync failed. Check connection.',1)}draw()}
+// ---------- events ----------
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el||el.tagName=='INPUT'||el.tagName=='SELECT')return;const a=el.dataset.a,id=el.dataset.id,c=find(id);
+if(a=='nav'){ST.view=id;ST.page=1;ST.q='';ST.drawer=false;closeM();draw();scrollTo(0,0)}
+else if(a=='drawer'){ST.drawer=!ST.drawer;draw()}
+else if(a=='pay'&&c)payModal(c);else if(a=='meth'){method=id;document.querySelectorAll('.pm .btn').forEach(b=>b.classList.toggle('on',b.dataset.id==id))}
+else if(a=='confirm')confirmPay(id);else if(a=='close')closeM();else if(a=='view'&&c)profile(c);else if(a=='deact'&&c)deactModal(c);
+else if(a=='deactgo'&&c){persist(c,{userStatus:'Fault',stTs:Date.now()},'Marked as Fault Box')}
+else if(a=='act'&&c){persist(c,{userStatus:'Active',stTs:Date.now()},'Customer activated')}
+else if(a=='sync')syncSheets();else if(a=='per'){ST.per=id;ST.pick=null;draw()}else if(a=='pick'){ST.pick=id;draw()}else if(a=='pg'){ST.page+=+id;draw()}});
+document.addEventListener('input',e=>{const t=e.target;if(t.id=='q'){ST.q=t.value;clearTimeout(window._qt);window._qt=setTimeout(()=>{ST.page=1;if(ST.view=='dash')$('#res').innerHTML=resHtml();else draw()},150)}});
+document.addEventListener('change',e=>{const t=e.target,a=t.dataset.a;if(a=='sort'){ST.sort=t.value}else if(a=='date'){if(!t.value)return toast('Invalid date',1);ST.date=t.value;ST.pick=null}else if(a=='mon'){ST.date=t.value+'-01';ST.pick=null}else if(a=='from')ST.from=t.value;else if(a=='to')ST.to=t.value;else return;draw()});
+document.addEventListener('submit',e=>{if(e.target.id!='lf')return;e.preventDefault();const f=new FormData(e.target);if(String(f.get('u')).trim().toLowerCase()=='admin'&&String(f.get('p')).trim()=='admin123'){ST.user='admin';try{sessionStorage.setItem('u','admin')}catch(x){}draw()}else toast('Invalid credentials',1)});
+draw();
+</script>
+<script>
+// ===== v2: global search, clickable cards, spreadsheet reports, editable amounts =====
+Object.assign(ST,{f:{area:'',method:'',ps:'',us:'',min:'',max:'',pk:''},rs:{k:'paymentDate',d:-1},rp:1,sel:new Set(),fo:false,per:'month'});
+const _rg=rng;rng=function(){return ST.per=='all'?['0000-00-00','9999-99-99']:_rg()};
+const fd=(s,sl)=>{if(!s||isNaN(D(String(s).slice(0,10))))return '-';s=String(s).slice(0,10);const d=D(s);return sl?d.toLocaleDateString('en-GB'):d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})};
+const filt=()=>ST.q.trim()||Object.values(ST.f).some(v=>v!=='');
+function recs(all){const[a,b]=rng(),q=ST.q.trim().toLowerCase(),f=ST.f;
+const src=[...P.map(p=>({...p,status:'PAID',package:p.package||p.amount})),...(ST.view=='rep'?C.filter(c=>c.paymentStatus=='Unpaid').map(c=>({paymentId:'DUE-'+c.customerId,paymentDate:c.dueDate,customerId:c.customerId,customerName:c.name,amount:c.monthlyAmount,package:c.package,paymentMethod:'—',status:'UNPAID',paymentTime:''})):[])];return src.map(p=>{const c=find(p.customerId)||{};return{...p,mobile:c.mobile||'',area:c.area||'',ps:p.status=='PAID'?'Paid':'Unpaid',us:c.userStatus||'',hay:[p.customerName,p.customerId,c.mobile,c.connectionNumber,c.area,c.address].join(' ').toLowerCase()}})
+.filter(r=>all||(r.paymentDate>=a&&r.paymentDate<=b&&(!f.area||r.area==f.area)&&(!f.pk||r.package==f.pk)&&(!f.method||r.paymentMethod==f.method)&&(!f.ps||r.ps==f.ps)&&(!f.us||r.us==f.us)&&(f.min===''||r.amount>=+f.min)&&(f.max===''||r.amount<=+f.max)&&(!q||r.hay.includes(q))))
+.sort((x,y)=>{const k=ST.rs.k,A=x[k],B=y[k];return(typeof A=='number'?A-B:String(A).localeCompare(String(B)))*ST.rs.d||y.paymentId.localeCompare(x.paymentId)})}
+const SCH=[['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['package','Package','r'],['amount','Amount Paid','r'],['paymentMethod','Method'],['status','Status','c']],SCR=[['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['area','Area'],['package','Package','r'],['amount','Amount','r'],['paymentMethod','Method'],['status','Status','c']],PK=[230,250,270,400];let SC=SCH;
+const cell=(r,k)=>k=='paymentDate'?fd(r.paymentDate):k=='amount'?fm(r.amount):k=='package'?fm(r.package):k=='status'?(r.status=='PAID'?bd('PAID','g'):bd('UNPAID','r')):k=='customerName'?`<a class="lk" data-a="view" data-id="${r.customerId}">${r.customerName}</a>`:r[k];
+const txt=(rs,sep)=>[SC.map(c=>c[1]).join(sep),...rs.map(r=>SC.map(c=>{const v=c[0]=='paymentDate'?fd(r.paymentDate,1):c[0]=='amount'?r.amount:c[0]=='status'?r.status:r[c[0]];return sep==','&&/[",\n]/.test(v)?'"'+String(v).replace(/"/g,'""')+'"':v}).join(sep))].join('\n');
+function sheet(title){SC=title=='Payment Report'?SCR:SCH;const rs=recs(),paid=rs.filter(r=>r.status=='PAID'),all=recs(1),m=rs.length,n=paid.length,tot=paid.reduce((x,r)=>x+r.amount,0),pages=Math.ceil(m/25)||1;ST.rp=Math.min(ST.rp,pages);const pg=rs.slice((ST.rp-1)*25,ST.rp*25),[a,b]=rng(),pr=ST.per,hist=title=='Payment History';
+const lab=pr=='all'?'All payments':pr=='day'?fd(a):pr=='month'?D(a).toLocaleDateString('en-GB',{month:'long',year:'numeric'}):fd(a)+' – '+fd(b);
+const opt=(k,l,o)=>`<select data-a="flt" data-k="${k}"><option value="">${l}</option>${o.map(x=>`<option ${ST.f[k]==x[0]?'selected':''} value="${x[0]}">${x[1]||x[0]}</option>`).join('')}</select>`;
+const per=[['day','DAY'],['week','WEEKLY'],['month','MONTHLY'],...(hist?[['all','ALL']]:[]),['custom','CUSTOM']];
+const ri=pr=='custom'?`<input type="date" data-a="from" value="${ST.from}"><input type="date" data-a="to" value="${ST.to}">`:pr=='all'?'':`<input type="${pr=='month'?'month':'date'}" data-a="${pr=='month'?'mon':'date'}" value="${pr=='month'?ST.date.slice(0,7):ST.date}">`;
+const nv=['day','week','month'].includes(pr)?`<button class="btn sm" data-a="nav2" data-id="-1">← Previous</button><b style="min-width:150px;text-align:center">${lab}</b><button class="btn sm" data-a="nav2" data-id="1">Next →</button>`:'';
+const byD={};rs.forEach(r=>byD[r.paymentDate]=(byD[r.paymentDate]||0)+r.amount);const ks=Object.keys(byD).sort().slice(-40),mx=Math.max(1,...ks.map(k=>byD[k]));
+return `<div class="card"><h2>${title}</h2>
+<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-bottom:12px"><div class="st"><div class="l">${lab}</div><div class="v" style="font-size:14px;margin-top:10px">${filt()?'Filtered':'All records'}</div></div><div class="st"><div class="l">Payments</div><div class="v">${n}</div></div><div class="st"><div class="l">Collection</div><div class="v">${fm(tot)}</div></div><div class="st"><div class="l">Average</div><div class="v">${fm(n?Math.round(tot/n):0)}</div></div></div>
+<div class="tabs">${per.map(p=>`<button class="btn ${pr==p[0]?'on':''}" data-a="per" data-id="${p[0]}">${p[1]}</button>`).join('')}<button class="btn" data-a="quick" data-id="0">Today</button><button class="btn" data-a="quick" data-id="1">Yesterday</button></div>
+<div class="ctl" style="align-items:center">${nv}${ri}</div>
+<button class="btn sm ftog" data-a="ftog" style="margin-bottom:8px">Filters ${filt()?'•':''}</button>
+<div class="fl ${ST.fo?'open':''}">${opt('area','Area: All',AR.map(x=>[x]))}${opt('pk','Package: All',PK.map(x=>[x,'₹'+x]))}${opt('method','Method: All',MT.map(x=>[x]))}${opt('ps','Payment: All',[['Paid'],['Unpaid']])}${opt('us','User: All',[['Active'],['Fault']])}<input type="number" min="0" placeholder="Min ₹" data-a="flt" data-k="min" value="${ST.f.min}"><input type="number" min="0" placeholder="Max ₹" data-a="flt" data-k="max" value="${ST.f.max}"><button class="btn sm" data-a="clr">Clear filters</button></div>
+<div class="ac" style="margin:8px 0 12px"><button class="btn sm" data-a="copy" title="Copy the selected payments">Copy selected${ST.sel.size?' ('+ST.sel.size+')':''}</button></div>
+${m?`<div class="gsw"><table class="gs"><thead><tr><th class="selcell"><input type="checkbox" class="ck" data-a="selall" ${pg.length&&pg.every(r=>ST.sel.has(r.paymentId))?'checked':''}></th>${SC.map(c=>`<th class="${c[2]||''}" data-a="rs" data-id="${c[0]}">${c[1]}${ST.rs.k==c[0]?(ST.rs.d>0?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>${pg.map(r=>`<tr data-cid="${r.customerId}" class="${ST.sel.has(r.paymentId)?'sl':''}"><td class="c selcell"><input type="checkbox" class="ck" data-a="sel" data-id="${r.paymentId}" ${ST.sel.has(r.paymentId)?'checked':''}></td>${SC.map(c=>`<td class="${c[2]||''}">${cell(r,c[0])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:`<div class="empty"><b>No payment records</b>Try changing the filters or search.</div>`}
+<div class="pg" style="justify-content:space-between;flex-wrap:wrap"><span>Showing ${m?(ST.rp-1)*25+1:0}–${Math.min(m,ST.rp*25)} of ${m}${filt()?' matching':''} records${filt()?' (of '+all.length+' total)':''}</span><b style="color:var(--t)">${filt()?'Filtered Results · ':''}Total Payments: ${n} · Total Collection: ${fm(tot)}</b><span><button class="btn sm" data-a="pg2" data-id="-1" ${ST.rp<2?'disabled':''}>Prev</button> ${ST.rp}/${pages} <button class="btn sm" data-a="pg2" data-id="1" ${ST.rp>=pages?'disabled':''}>Next</button></span></div></div>
+${!hist&&ks.length>1?`<div class="card"><h2>Daily collection (filtered)</h2><div class="bars">${ks.map(k=>`<i title="${fd(k)}: ${fm(byD[k])}" style="height:${byD[k]/mx*100}%"></i>`).join('')}</div></div>`:''}`}
+// search bar + dashboard + per-page search
+const _ob=body;
+body=function(){if(ST.sync.busy)return _ob();const v=ST.view,all=C,tp=today();
+const bar=`<div class="sr">${ic('srch')}<input id="q" type="search" placeholder="Search customer by name, mobile, ID, connection, area or address..." value="${ST.q}" autocomplete="off"></div>`;let h;
+if(v=='dash'){const un=C.filter(c=>c.paymentStatus=='Unpaid'),col=P.filter(p=>p.paymentDate==tp).reduce((x,p)=>x+p.amount,0);
+const S=[['Total Customers',C.length,'ppl','cust'],['Paid Users',C.length-un.length,'chk','paid'],['Unpaid Users',un.length,'wrn','unp'],['Active Users',C.filter(c=>c.userStatus=='Active').length,'chk','paid'],['Fault Box',C.filter(c=>c.userStatus!='Active').length,'blk','deact'],["Today's Collection",fm(col),'pay','hist']];
+const rp=P.slice().sort((a,b)=>(b.paymentDate+b.paymentTime).localeCompare(a.paymentDate+a.paymentTime)).slice(0,6);
+h=`<div id="res">${resHtml()}</div><div class="stats">${S.map(s=>`<div class="st click" data-a="card" data-id="${s[3]}"><span class="ar">›</span><div class="l">${ic(s[2])}${s[0]}</div><div class="v">${s[1]}</div></div>`).join('')}</div>
+<div class="card"><h2>Unpaid Customers</h2>${tbl(un.slice(0,8),[cc.cu,cc.mo,cc.cn,['Amount Due',c=>fm(c.monthlyAmount)],cc.due,cc.us,cc.ac],['No unpaid users','All customers are currently paid.'])}<div class="pg"><a class="lk" data-a="nav" data-id="unp">View All Unpaid Users →</a></div></div>
+<div class="card"><h2>Recent Payments</h2>${tbl(rp,[['Customer',p=>p.customerName],['Amount',p=>fm(p.amount)],['Payment Date',p=>p.paymentDate==tp?'Today':fd(p.paymentDate)],['Method',p=>p.paymentMethod],['Status',p=>bd('PAID','g')]],['No payments yet'])}<div class="pg"><a class="lk" data-a="nav" data-id="hist">View All Payments →</a></div></div>`}
+else if(v=='hist')h=sheet('Payment History');else if(v=='rep')h=sheet('Payment Report');else if(v=='set')h=_ob();
+else{C=match(ST.q);try{h=_ob()}finally{C=all}h=h.replace(/<input id="q"[^>]*>/,'')}
+return bar+h};
+// editable amounts
+cc.am=['Amount',c=>fm(c.monthlyAmount)];
+payModal=function(c){method='Cash';busy=false;modal(`<h2>Collect Payment</h2><div class="kv"><div>Customer<b>${c.name}</b></div><div>Box.no<b>${c.customerId}</b></div><div>Mobile<b>${c.mobile}</b></div><div>STB-number<b>${c.connectionNumber}</b></div><div>Package<b>${fm(c.package)}</b></div><div>Amount Due<b>${fm(c.monthlyAmount)}</b></div><div>Payment Date<b>${today()}</b></div></div><div class="sub">Amount Being Paid (₹)</div><input id="pa" type="number" min="1" inputmode="numeric" value="${c.monthlyAmount}" style="font-size:22px;font-weight:700;margin:6px 0 12px"><div class="sub">Payment Method</div><div class="pm">${MT.map(m=>`<button class="btn sm ${m==method?'on':''}" data-a="meth" data-id="${m}">${m}</button>`).join('')}</div><textarea id="nt" placeholder="Notes (optional)"></textarea><div class="ac" style="margin-top:14px"><button class="btn" data-a="close" style="flex:1">Cancel</button><button class="btn p" id="cf" data-a="confirm" data-id="${c.customerId}" style="flex:2">Pay</button></div>`)};
+confirmPay=function(id){if(busy)return;const c=find(id),amt=+($('#pa')||{}).value;if(!c)return toast('Missing customer',1);if(!(amt>0))return toast('Enter a valid amount',1);busy=true;const b=$('#cf');b.disabled=true;b.textContent='Processing…';const note=($('#nt')||{}).value;
+setTimeout(()=>{const n=new Date();c.paymentStatus='Paid';c.userStatus='Active';c.paymentDate=today();c.dueDate=iso(addD(n,30));c.paymentMethod=method;if(note)c.notes=note;P.push({paymentId:'PAY-'+(pid++),customerId:id,customerName:c.name,package:c.package,amount:amt,paymentDate:today(),paymentTime:n.getHours()+':'+String(n.getMinutes()).padStart(2,'0'),paymentMethod:method,status:'Success'});
+$('.md').innerHTML=`<div class="ok">${ic('chk')}<h2 style="margin-top:10px">Payment Successful</h2><p>${c.name} paid ${fm(amt)} via ${method}.<br><b style="color:#4ade80">Customer is now Active</b></p><button class="btn p" data-a="close" style="width:100%">Done</button></div>`;draw();busy=false},700)};
+// export
+async function copyRep(){const t=txt(recs(),'\t');try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(z){}x.remove()}toast('Report copied to clipboard')}
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,id=el.dataset.id;
+if(a=='card'){ST.view=id;ST.q='';ST.page=1;if(id=='hist'){ST.per='day';ST.date=today()}draw();scrollTo(0,0)}
+else if(a=='nav'){ST.per=id=='hist'?'all':'month';ST.rp=1;draw()}
+else if(a=='rs'){ST.rs=ST.rs.k==id?{k:id,d:-ST.rs.d}:{k:id,d:(id=='paymentDate'||id=='amount')?-1:1};ST.rp=1;draw()}
+else if(a=='per'){ST.rp=1;draw()}
+else if(a=='quick'){ST.per='day';ST.date=iso(addD(new Date(),-id));ST.rp=1;draw()}
+else if(a=='nav2'){const d=D(ST.date);if(ST.per=='day')d.setDate(d.getDate()+ +id);else if(ST.per=='week')d.setDate(d.getDate()+7*id);else{d.setDate(1);d.setMonth(d.getMonth()+ +id)}ST.date=iso(d);ST.rp=1;draw()}
+else if(a=='pg2'){ST.rp+=+id;draw()}else if(a=='clr'){ST.f={area:'',method:'',ps:'',us:'',min:'',max:'',pk:''};ST.q='';ST.per=ST.view=='rep'?'month':'all';ST.date=today();ST.rp=1;draw()}
+else if(a=='ftog'){ST.fo=!ST.fo;draw()}else if(a=='copy')copyRep();
+else if(a=='sel'){ST.sel.has(id)?ST.sel.delete(id):ST.sel.add(id);el.closest('tr').classList.toggle('sl')}});
+document.addEventListener('change',e=>{const t=e.target,a=t.dataset.a;if(a=='flt'){ST.f[t.dataset.k]=t.value;ST.rp=1;draw()}else if(['date','mon','from','to'].includes(a)){ST.rp=1;draw()}});
+document.addEventListener('input',e=>{if(e.target.id=='q'&&ST.rp!=1){ST.rp=1;draw()}});
+draw();
+</script>
+<script>
+// ===== v3: tables for customer pages, packages, SAVE vs Pay, sheet mapping =====
+const lastPay=c=>{const l=P.filter(p=>p.customerId==c.customerId).sort((a,b)=>b.paymentDate.localeCompare(a.paymentDate))[0];return l?l.amount:0};
+Object.assign(ST,{cs:{k:'name',d:1},cp:1,cf:{pk:'',area:'',ps:'',us:''}});
+const B=(c,a,l,k)=>`<button class="btn ${k||''} sm" data-a="${a}" data-id="${c.customerId}">${l}</button>`;
+const VW=c=>B(c,'view','View'),PN=c=>B(c,'pay','Pay','p'),DE=c=>B(c,'deact','Fault Box','d');
+const bs=[['customerId','Box.no'],['name','Customer Name',0,c=>`<a class="lk" data-a="view" data-id="${c.customerId}">${c.name}</a>`],['mobile','Phone']],
+cn=['connectionNumber','STB-number'],pk=['package','Package','r',c=>fm(c.package)],dueC=['dueDate','Due Date',0,c=>fd(c.dueDate)],ad=['monthlyAmount','Amount Due','r',c=>fm(c.monthlyAmount)],
+psC=['paymentStatus','Payment Status','c',pb],usC=['userStatus','Fault Box','c',ub],ac=f=>[0,'Actions','r',f];
+const VC={cust:[...bs,['area','Area'],cn,pk,['monthlyAmount','Amount','r',c=>fm(c.monthlyAmount)],psC,usC,ac(c=>VW(c)+(c.paymentStatus=='Unpaid'?PN(c):''))],
+paid:[...bs,cn,pk,['monthlyAmount','Amount Paid','r',c=>fm(lastPay(c))],['paymentDate','Payment Date',0,c=>fd(c.paymentDate)],['paymentMethod','Payment Method'],['userStatus','Status','c',c=>pb(c)+' '+ub(c)],ac(c=>VW(c))],
+unp:[...bs,cn,pk,ad,dueC,['userStatus','Status','c',ub],ac(c=>PN(c)+(c.userStatus=='Active'?DE(c):''))],
+deact:[...bs,cn,pk,ad,dueC,psC,usC,ac(c=>PN(c))]};
+const TT={cust:'Customers',paid:'Paid / Active Users',unpaid:0,unp:'Unpaid Users',deact:'Fault Box'};
+const inV=(v,c)=>(v!='paid'||c.paymentStatus=='Paid')&&(v!='unp'||c.paymentStatus=='Unpaid')&&(v!='deact'||c.userStatus=='Fault');
+const bar=()=>`<div class="sr">${ic('srch')}<input id="q" type="search" placeholder="Search customers..." value="${ST.q}" autocomplete="off"></div>`;
+function custPage(v){const f=ST.cf,cols=VC[v];
+let l=match(ST.q).filter(c=>inV(v,c)&&(!f.pk||c.package==f.pk)&&(!f.area||c.area==f.area)&&(!f.ps||c.paymentStatus==f.ps)&&(!f.us||c.userStatus==f.us));
+const tot=C.filter(c=>inV(v,c)).length;l.sort((x,y)=>{const A=x[ST.cs.k],B=y[ST.cs.k];return(typeof A=='number'?A-B:String(A).localeCompare(String(B)))*ST.cs.d});
+const m=l.length,pages=Math.ceil(m/25)||1;ST.cp=Math.min(ST.cp,pages);const pg=l.slice((ST.cp-1)*25,ST.cp*25);
+const o=(k,t,a)=>`<select data-a="cflt" data-k="${k}"><option value="">${t}</option>${a.map(x=>`<option value="${x[0]}" ${f[k]==x[0]?'selected':''}>${x[1]||x[0]}</option>`).join('')}</select>`;
+return `<div class="card"><h2>${TT[v]}</h2><div class="fl" style="display:flex">${o('pk','Package: All',PK.map(x=>[x,'₹'+x]))}${o('area','Area: All',AR.map(x=>[x]))}${v=='cust'?o('ps','Payment: All',[['Paid'],['Unpaid']])+o('us','User: All',[['Active'],['Fault']]):''}<button class="btn sm" data-a="cclr">Clear Filters</button></div>
+${m?`<div class="gsw"><table class="gs"><thead><tr>${cols.map(c=>`<th class="${c[2]||''}" ${c[0]?`data-a="cs" data-id="${c[0]}"`:''}>${c[1]}${ST.cs.k==c[0]?(ST.cs.d>0?' ▲':' ▼'):''}</th>`).join('')}</tr></thead><tbody>${pg.map((r,ri)=>`<tr data-cid="${r.customerId}">${cols.map(c=>`<td class="${c[2]||''}">${c[3]?c[3](r,(ST.cp-1)*25+ri+1):r[c[0]]}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:`<div class="empty"><b>${v=='unp'?'No unpaid users':v=='deact'?'No fault boxes':'No customers found'}</b>${v=='unp'?'All customers are currently paid.':'No customers match your search.'}</div>`}
+<div class="pg" style="justify-content:space-between;flex-wrap:wrap"><span>Showing ${m?(ST.cp-1)*25+1:0}–${Math.min(m,ST.cp*25)} of ${m}${m<tot?' matching':''} records</span><span><button class="btn sm" data-a="cp2" data-id="-1" ${ST.cp<2?'disabled':''}>Prev</button> ${ST.cp}/${pages} <button class="btn sm" data-a="cp2" data-id="1" ${ST.cp>=pages?'disabled':''}>Next</button></span></div></div>`}
+const pkgCard=()=>`<div class="card"><h2>Package Distribution</h2><div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:0">${PK.map(p=>`<div class="st click" data-a="pkg" data-id="${p}"><span class="ar">›</span><div class="l">₹${p} Package</div><div class="v">${C.filter(c=>c.package==p).length}</div><div class="l">customers</div></div>`).join('')}</div></div>`;
+const _b2=body;body=function(){if(ST.sync.busy)return _b2();if(VC[ST.view])return bar()+custPage(ST.view);let h=_b2();return ST.view=='dash'?h+pkgCard():h};
+function wb(op,c){/* write-back hook: POST {op,customer} to your secure /api/sheets route when configured */}
+// Sheet header → field mapping (tab 1 headers: A.No, STB.No, Name, Phone Number, Area, STB Number)
+const SHEET_MAP={customerId:['stb.no'],name:['name'],mobile:['phone number'],area:['area'],connectionNumber:['stb number'],package:['package'],monthlyAmount:['amount'],paymentStatus:['payment status'],paymentDate:['payment date'],dueDate:['due date'],userStatus:['user status'],paymentMethod:['payment method']};
+function mapRows(h,rows){const ix={};for(const k in SHEET_MAP)ix[k]=h.findIndex(x=>SHEET_MAP[k].includes(String(x).trim().toLowerCase()));return rows.filter(r=>r[ix.customerId]).map(r=>{const o={};for(const k in ix)o[k]=ix[k]>=0?r[ix[k]]:'';return o})}
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,id=el.dataset.id,R=()=>{ST.cf={pk:'',area:'',ps:'',us:''};ST.cp=1};
+if(a=='cs'){ST.cs=ST.cs.k==id?{k:id,d:-ST.cs.d}:{k:id,d:1};ST.cp=1;draw()}
+else if(a=='cp2'){ST.cp+=+id;draw()}
+else if(a=='cclr'){R();ST.q='';draw()}
+else if(a=='pkg'){ST.view='cust';ST.q='';R();ST.cf.pk=+id;draw();scrollTo(0,0)}
+else if(a=='nav'||a=='card'){R();ST.cs={k:'name',d:1};draw()}});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.a=='cflt'){ST.cf[t.dataset.k]=t.value;ST.cp=1;draw()}});
+document.addEventListener('input',e=>{if(e.target.id=='q'&&ST.cp!=1){ST.cp=1;draw()}});
+draw();
+</script>
+<script>
+// ===== v4: persistence via the artifact db capability (payments + customer overrides) =====
+const BASE=JSON.parse(JSON.stringify(C)),BP=P.slice();let DB=null,HY=false,OV={};
+const saveCust=(c,x)=>DB.collection('customers').doc(c.customerId).set({package:c.package,monthlyAmount:c.monthlyAmount,userStatus:c.userStatus,stTs:(OV[c.customerId]||{}).stTs||0,...x});
+async function hydrate(){try{DB=window.claude?await claude.use('db'):null}catch(e){DB=null}HY=true;
+if(DB){try{const[ps,cs]=await Promise.all([DB.collection('payments').get(),DB.collection('customers').get()]);
+const dp=ps.docs.map(d=>d.data()).filter(p=>p&&p.paymentId);OV={};cs.docs.forEach(d=>OV[d.id]=d.data());
+C=JSON.parse(JSON.stringify(BASE));P=[...BP,...dp.map(p=>({...p}))];const T=today();
+C.forEach(c=>{const ov=OV[c.customerId]||{};if(ov.package){c.package=ov.package;c.monthlyAmount=ov.monthlyAmount}
+const mine=dp.filter(p=>p.customerId==c.customerId).sort((a,b)=>b.ts-a.ts)[0];
+if(mine&&mine.paymentDate>=c.paymentDate){c.paymentDate=mine.paymentDate;c.dueDate=iso(addD(D(mine.paymentDate),30));c.paymentMethod=mine.paymentMethod;c.paymentStatus=c.dueDate>=T?'Paid':'Unpaid'}
+c.userStatus=(mine&&mine.ts>(ov.stTs||0))?'Active':(ov.userStatus||c.userStatus)})}catch(e){DB=null;toast('Could not load saved data',1)}}
+ST.sync={t:new Date(),ok:!!DB,busy:false};draw()}
+confirmPay=async function(id){if(busy)return;const c=find(id),amt=+($('#pa')||{}).value;if(!c)return toast('Missing customer',1);if(!(amt>0))return toast('Enter a valid amount',1);
+if(!DB)return toast('Payment failed to save. Database unavailable.',1);
+busy=true;const b=$('#cf');b.disabled=true;b.textContent='Processing Payment...';
+try{const n=new Date();let k=P.filter(p=>/^PAY-\d{6}$/.test(p.paymentId)).length+1,pid2;
+for(;;k++){pid2='PAY-'+String(k).padStart(6,'0');if(!(await DB.collection('payments').doc(pid2).get()).exists)break}
+await DB.collection('payments').doc(pid2).set({paymentId:pid2,customerId:id,customerName:c.name,package:c.package,amount:amt,paymentDate:today(),paymentTime:n.getHours()+':'+String(n.getMinutes()).padStart(2,'0'),paymentMethod:method,status:'Success',notes:($('#nt')||{}).value||'',ts:Date.now()});
+await saveCust(c,{userStatus:'Active',stTs:Date.now()});await hydrate();
+$('.md').innerHTML=`<div class="ok">${ic('chk')}<h2 style="margin-top:10px">Payment Successful</h2><p>${c.name} paid ${fm(amt)} via ${method}.<br><b style="color:#4ade80">PAID · ACTIVE — saved to database</b></p><button class="btn p" data-a="close" style="width:100%">Done</button></div>`}
+catch(e){toast('Payment failed to save. Please try again.',1);const x=$('#cf');if(x){x.disabled=false;x.textContent='Pay'}}finally{busy=false}};
+async function persist(c,patch,msg){
+  try{
+    await sheetWrite({action:'updateCustomer',customerId:c.customerId,...patch});
+    await hydrate();closeM();toast(msg);
+  }catch(e){toast('Save failed: '+e.message,1)}
+}
+syncSheets=async function(){ST.sync.busy=true;draw();await hydrate();toast(DB?'Synced with saved data':'Database unavailable',!DB)};
+const _b4=body;body=function(){return(HY&&!DB?'<div class="card" style="border-color:var(--er)">⚠ Database not connected: payments and edits cannot be saved. Sign in to claude.ai to enable saving.</div>':'')+_b4()};
+// ===== v4: live read-only data from the Google Sheet (Apps Script web app) =====
+const SHEET_URL='https://script.google.com/macros/s/AKfycbxr_ehuahmsn3vcz3UUYxQXhx7PE9t3qv4tl8c_mmCX7wZgwT36ndWnfxA0UnBt8ZJc/exec'; // the /exec URL from Deploy > Web app
+function jp(u){return new Promise((ok,no)=>{const n='cb'+Date.now(),s=document.createElement('script'),cl=()=>{clearTimeout(t);delete window[n];s.remove()},t=setTimeout(()=>{cl();no(new Error('timed out'))},20000);
+window[n]=d=>{cl();ok(d)};s.onerror=()=>{cl();no(new Error('could not load'))};s.src=u+(u.includes('?')?'&':'?')+'callback='+n;document.head.appendChild(s)})}
+hydrate=async function(){try{if(!/^https:/.test(SHEET_URL)){C=JSON.parse(JSON.stringify(BASE));P=BP.slice();ST.sync={t:new Date(),ok:false,busy:false};draw();return toast('Showing demo data. Set SHEET_URL to connect your Sheet.',1)}
+const d=await jp(SHEET_URL);if(!d||!d.ok)throw new Error((d&&d.error)||'bad response');C=d.customers;P=d.payments||[];ST.sync={t:new Date(),ok:true,busy:false}}
+catch(e){ST.sync={t:ST.sync.t,ok:false,busy:false};toast('Unable to sync customer data. Please try again.',1)}draw()};
+async function sheetWrite(params){
+  return new Promise((resolve,reject)=>{
+    const n='wr'+Date.now()+Math.random().toString(36).slice(2),s=document.createElement('script');
+    const t=setTimeout(()=>{cleanup();reject(new Error('write timed out'))},20000);
+    function cleanup(){clearTimeout(t);delete window[n];s.remove()}
+    window[n]=d=>{cleanup();if(d&&d.ok)resolve(d);else reject(new Error((d&&d.error)||'write failed'))};
+    s.onerror=()=>{cleanup();reject(new Error('could not load'))};
+    const q=new URLSearchParams({...params,callback:n});
+    s.src=SHEET_URL+'?'+q.toString();document.head.appendChild(s);
+  });
+}
+confirmPay=async function(id){
+  if(busy)return;
+  const c=find(id),amt=+($('#pa')||{}).value;
+  if(!c)return toast('Missing customer',1);
+  if(!(amt>0))return toast('Enter a valid amount',1);
+  busy=true;const b=$('#cf');if(b){b.disabled=true;b.textContent='Saving…'}
+  try{
+    await sheetWrite({action:'recordPayment',customerId:id,amount:amt,paymentMethod:method,notes:($('#nt')||{}).value||''});
+    await hydrate();
+    closeM();
+    toast(c.name+' marked Paid and saved to Google Sheet');
+  }catch(e){
+    toast('Save failed: '+e.message,1);
+    if(b){b.disabled=false;b.textContent='Pay'}
+  }finally{busy=false}
+};
+
+</script>
+<script>// ===== v5: duplicate-safe fast payments, Fault Box, read-only GET + whitelisted POST =====
+const uid=()=>crypto.randomUUID?crypto.randomUUID():'r'+Date.now()+Math.random().toString(36).slice(2);
+const dedupe=a=>{const ids=new Set(),rq=new Set(),sig=new Set();return a.filter(p=>{const g=[p.customerId,p.paymentDate,p.paymentTime,p.amount,p.paymentMethod].join('|');
+if(ids.has(p.paymentId)||(p.requestId&&rq.has(p.requestId))||(p.paymentTime&&sig.has(g)))return false;ids.add(p.paymentId);if(p.requestId)rq.add(p.requestId);sig.add(g);return true})};
+let HP=null;
+hydrate=function(){if(HP)return HP;return HP=(async()=>{try{const d=await jp(SHEET_URL);if(!d||!d.ok)throw new Error((d&&d.error)||'bad response');
+C=d.customers.map(c=>({...c,userStatus:/fault|deactiv/i.test(c.userStatus||'')?'Fault':'Active'}));P=dedupe(d.payments||[]);ST.sync={t:new Date(),ok:true,busy:false}}
+catch(e){ST.sync={t:ST.sync.t,ok:false,busy:false};toast('Unable to sync customer data. Please try again.',1)}finally{HP=null}draw()})()};
+async function post(b){let t;const to=new Promise((_,no)=>{t=setTimeout(()=>no(Object.assign(new Error('timed out'),{name:'AbortError'})),15000)});try{const r=await Promise.race([fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(b),redirect:'follow'}).then(async r=>{const d=await r.json();if(!d.ok)throw new Error(d.error||'write failed');return d}),to]);return r}finally{clearTimeout(t)}}
+// A.no / STB-number columns
+SCH.splice(0,SCH.length,['ano','A.no'],['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['stb','STB-number'],['package','Package','r'],['amount','Amount Paid','r'],['paymentMethod','Method'],['status','Status','c']);
+SCR.splice(0,SCR.length,['ano','A.no'],['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['stb','STB-number'],['area','Area'],['package','Package','r'],['amount','Amount','r'],['paymentMethod','Method'],['status','Status','c']);
+const _rc=recs;recs=function(all){return _rc(all).map((r,i)=>({...r,ano:i+1,stb:(find(r.customerId)||{}).connectionNumber||''}))};
+Object.keys(VC).forEach(k=>VC[k].unshift([0,'A.no','c',(r,n)=>n]));
+const faultBtn=c=>c.userStatus=='Active'?DE(c):B(c,'act','Repaired');
+VC.cust.at(-1)[3]=c=>VW(c)+(c.paymentStatus=='Unpaid'?PN(c):'')+faultBtn(c);
+VC.paid.at(-1)[3]=c=>VW(c)+faultBtn(c);VC.deact.at(-1)[3]=c=>(c.paymentStatus=='Unpaid'?PN(c):'')+faultBtn(c);
+deactModal=c=>modal(`<h2>Mark as Fault Box?</h2><p>${c.name} · Box ${c.customerId} · STB ${c.connectionNumber}</p><p style="color:var(--m)">This is an equipment/connection fault. It does not change payment status.</p><div class="ac"><button class="btn" data-a="close" style="flex:1">Cancel</button><button class="btn d" data-a="deactgo" data-id="${c.customerId}" style="flex:1">Fault Box</button></div>`);
+// payment: one request id per modal; in-flight guard; no full refetch afterwards
+let RID=null;const FL=new Set();const _pm=payModal;payModal=function(c){_pm(c);RID=uid()};
+confirmPay=async function(id){const c=find(id),amt=+($('#pa')||{}).value,rid=RID||(RID=uid());
+if(FL.has(rid))return;if(!c)return toast('Missing customer',1);if(!(amt>0))return toast('Enter a valid amount',1);if(!MT.includes(method))return toast('Choose a valid payment method',1);
+FL.add(rid);busy=true;const b=$('#cf');if(b){b.disabled=true;b.innerHTML='<i class="spin"></i> Processing...'}
+try{const d=await post({action:'recordPayment',requestId:rid,customerId:id,amount:amt,paymentMethod:method,notes:($('#nt')||{}).value||''}),n=new Date(),
+p=d.payment||{paymentId:d.paymentId,customerId:id,customerName:c.name,package:c.package,amount:amt,paymentDate:today(),paymentTime:n.getHours()+':'+String(n.getMinutes()).padStart(2,'0'),paymentMethod:method,status:'Success'};
+if(!P.some(x=>x.paymentId==p.paymentId))P.push(p);Object.assign(c,{paymentStatus:'Paid',paymentDate:p.paymentDate,dueDate:d.dueDate||iso(addD(n,30)),paymentMethod:method});RID=null;
+const m=$('.md');if(m)m.innerHTML=`<div class="ok">${ic('chk')}<h2 style="margin-top:10px">Payment Successful</h2><p>${c.name} paid ${fm(p.amount)} via ${p.paymentMethod}.<br><b style="color:#4ade80">PAID · ${p.paymentId}</b></p><button class="btn p" data-a="close" style="width:100%">Done</button></div>`;draw()}
+catch(e){toast(e&&e.name=='AbortError'?'Payment is taking too long. Tap Try Again. It will not be duplicated.':'Unable to update payment. Please try again.',1);const x=$('#cf');if(x){x.disabled=false;x.textContent='Try Again'}}
+finally{busy=false;FL.delete(rid)}};
+persist=async function(c,patch,msg){try{const a='package' in patch?{action:'setPackage',customerId:c.customerId,package:patch.package}:{action:'setFault',customerId:c.customerId,fault:patch.userStatus!='Active'};await post(a);
+if(a.action=='setPackage')c.package=c.monthlyAmount=a.package;else c.userStatus=a.fault?'Fault':'Active';closeM();draw();toast(msg)}catch(e){toast('Save failed: '+e.message,1)}};
+
+function doLogin(){const r=document.getElementById('lf');if(!r)return;const u=String(r.querySelector('[name=u]').value).trim().toLowerCase(),p=String(r.querySelector('[name=p]').value).trim();
+if(u=='admin'&&p=='admin123'){ST.user='admin';try{sessionStorage.setItem('u','admin')}catch(x){}draw()}else toast('Invalid credentials',1)}
+document.addEventListener('click',e=>{if(e.target.closest('#lgo'))doLogin()});
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&e.target.closest&&e.target.closest('#lf'))doLogin()});
+
+// ===== v6: calendar-month ranges, Fault Box loading states, Repaired, success colours =====
+const pad=n=>String(n).padStart(2,'0'),MON={jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11};
+const monthRange=(y,m)=>[y+'-'+pad(m+1)+'-01',y+'-'+pad(m+1)+'-'+pad(new Date(y,m+1,0).getDate())]; // 1st .. real last day (28/29/30/31)
+const _rgO=rng;rng=function(){if(ST.per=='month'){const d=D(String(ST.date).slice(0,10));return monthRange(d.getFullYear(),d.getMonth())}return _rgO()};
+const nd=v=>{if(!v)return'';if(v instanceof Date)return iso(v);const t=String(v).trim();if(/^\d{4}-\d{2}-\d{2}/.test(t))return t.slice(0,10);
+const m=t.match(/^(\d{1,2})[ \-\/]([A-Za-z]{3})[a-z]*[ \-\/,]+(\d{4})/);if(m&&MON[m[2].toLowerCase()]!=null)return m[3]+'-'+pad(MON[m[2].toLowerCase()]+1)+'-'+pad(+m[1]);const d=new Date(t);return isNaN(d)?t:iso(d)};
+hydrate=function(){if(HP)return HP;return HP=(async()=>{try{const d=await jp(SHEET_URL);if(!d||!d.ok)throw new Error((d&&d.error)||'bad response');
+C=d.customers.map(c=>({...c,paymentDate:nd(c.paymentDate),dueDate:nd(c.dueDate),userStatus:/fault|deactiv/i.test(c.userStatus||'')?'Fault':'Active'}));
+P=dedupe((d.payments||[]).map(p=>({...p,paymentDate:nd(p.paymentDate)})));ST.sync={t:new Date(),ok:true,busy:false}}
+catch(e){ST.sync={t:ST.sync.t,ok:false,busy:false};toast('Unable to sync customer data. Please try again.',1)}finally{HP=null}draw()})()};
+// Customer table: Package + Amount in success colour, no Edit, Repaired instead of Clear Fault
+VC.cust=VC.cust.map(x=>x[0]=='package'?[x[0],x[1],'r',c=>bd(fm(c.package),'g')]:x[0]=='monthlyAmount'?[x[0],x[1],'r',c=>bd(fm(c.monthlyAmount),'g')]:x);
+const faultBtn6=c=>c.userStatus=='Active'?DE(c):B(c,'act','Repaired','ok');
+VC.cust.at(-1)[3]=c=>VW(c)+(c.paymentStatus=='Unpaid'?PN(c):'')+faultBtn6(c);
+VC.paid.at(-1)[3]=c=>VW(c)+faultBtn6(c);
+VC.deact.at(-1)[3]=c=>faultBtn6(c);                      // Fault Box page: NO Pay Now
+// Fault / Repaired: instant spinner, one request per box, only that record updates, no refetch
+const PEND=new Set();let LB=null;
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a="deactgo"],[data-a="act"]');if(!el)return;const id=el.dataset.id;
+if(PEND.has(id)||el.disabled){e.stopImmediatePropagation();e.preventDefault();return}
+PEND.add(id);LB=el;el.dataset.orig=el.innerHTML;el.disabled=true;el.classList.add('busy');el.innerHTML='<i class="spin"></i> '+(el.dataset.a=='act'?'Updating...':'Updating...')},true);
+persist=async function(c,patch){const id=c.customerId,b=LB,fault=patch.userStatus!='Active';LB=null;
+try{await post({action:'setFault',customerId:id,fault});if(b&&b.isConnected){b.classList.remove('busy');b.innerHTML='✓ '+(fault?'Fault Box':'Repaired');await new Promise(r=>setTimeout(r,250))}
+c.userStatus=fault?'Fault':'Active';closeM();draw();toast(fault?'Fault marked successfully':'Fault marked as repaired')}
+catch(e){if(b&&b.isConnected){b.disabled=false;b.classList.remove('busy');b.innerHTML=b.dataset.orig}toast('Unable to update fault status. Please try again.',1)}finally{PEND.delete(id)}};
+// ===== v7: normalisation layer, one Customer Details Card, clickable rows, selected-row copy, Settings-only sync =====
+const esc=x=>String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const sv=v=>{if(v==null)return'';const t=String(v).trim();return/^(undefined|null|nan|\[object object\])$/i.test(t)?'':t};
+const num=v=>{const n=parseFloat(String(v==null?'':v).replace(/[^0-9.\-]/g,''));return isFinite(n)?n:0};
+const dash=v=>{v=sv(v);return v?esc(v):'-'};
+const normC=(c,i)=>{const pk=num(c.package||c.monthlyAmount||c.plan);return{...c,customerId:sv(c.customerId),ano:sv(c.ano)||String(i+1),name:sv(c.name),mobile:sv(c.mobile),address:sv(c.address),area:sv(c.area),connectionNumber:sv(c.connectionNumber),
+plan:String(pk||''),package:pk,monthlyAmount:num(c.monthlyAmount)||pk,paymentStatus:/^paid$/i.test(sv(c.paymentStatus))?'Paid':'Unpaid',userStatus:/fault|deactiv/i.test(sv(c.userStatus))?'Fault':'Active',
+paymentDate:nd(c.paymentDate),dueDate:nd(c.dueDate),paymentMethod:sv(c.paymentMethod),notes:sv(c.notes),extra:c.extra&&typeof c.extra=='object'?c.extra:{}}};
+const normP=p=>({...p,paymentId:sv(p.paymentId),customerId:sv(p.customerId),customerName:sv(p.customerName),package:num(p.package||p.amount),amount:num(p.amount),paymentDate:nd(p.paymentDate),paymentTime:sv(p.paymentTime),paymentMethod:sv(p.paymentMethod)||'Cash',status:sv(p.status)||'Success'});
+C=C.map(normC);P=P.map(normP);
+hydrate=function(){if(HP)return HP;return HP=(async()=>{let ok=false;try{const d=await jp(SHEET_URL);if(!d||!d.ok)throw new Error((d&&d.error)||'bad response');
+C=d.customers.map(normC).filter(c=>c.customerId);P=dedupe((d.payments||[]).map(normP));ST.sync={t:new Date(),ok:true,busy:false};ST.lastOk=new Date();ST.syncMsg={ok:true};ok=true}
+catch(e){ST.sync={t:ST.sync.t,ok:false,busy:false};ST.syncMsg={ok:false,err:e.message};toast('Unable to sync customer data. Please try again.',1)}finally{HP=null}ST.syncing=false;draw();return ok})()};
+// Settings-only sync + last successful sync time
+const fmtT=d=>d?d.toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}).replace(/\b(am|pm)\b/,x=>x.toUpperCase()):'';
+syncSheets=async function(){if(ST.syncing)return;ST.syncing=true;ST.syncMsg=null;draw();if(await hydrate())toast('Data synced successfully')};
+const syncCard=()=>`<div class="card"><h2>Google Sheet sync</h2><div class="ac" style="align-items:center"><button class="btn p" data-a="sync" ${ST.syncing?'disabled':''}>${ST.syncing?'<i class="spin"></i> Syncing...':ic('syn')+' Sync Now'}</button><span class="pill ${ST.sync.ok?'':'bad'}">${ST.sync.ok?'Connected':'Not connected'}</span></div><p class="sub" style="margin-top:10px">${ST.lastOk?'Last synced: '+fmtT(ST.lastOk):'Not synced yet'}</p>${ST.syncMsg&&ST.syncMsg.ok?'<p style="color:#4ade80;margin:6px 0 0">Data synced successfully</p>':''}${ST.syncMsg&&!ST.syncMsg.ok?'<p style="color:#ff8a8a;margin:6px 0 0">Unable to sync customer data. Please try again. Showing the last loaded data.</p>':''}<p class="sub">Data is read from your Google Sheet. The website cannot edit it.</p></div>`;
+const _b7=body;body=function(){if(ST.view=='set')return syncCard();return(!ST.sync.ok&&!ST.sync.busy&&!ST.syncing?'<div class="card" style="border-color:var(--er)">Could not load data from the Sheet. Go to <b>Settings → Sync Now</b> to retry.</div>':'')+_b7()};
+// Fault Box users can never be paid: enforced in UI logic + handlers
+const canPay=c=>c.paymentStatus=='Unpaid'&&c.userStatus!='Fault';const NOPAY='Fault Box customers cannot be paid until repaired';
+const faultAct=c=>c.userStatus=='Active'?DE(c):B(c,'act','Repaired','ok');
+const acts6=c=>`<div class="ac">${VW(c)}${canPay(c)?PN(c):''}${faultAct(c)}</div>`;cc.ac[1]=acts6;
+VC.cust.at(-1)[3]=c=>VW(c)+(canPay(c)?PN(c):'')+faultAct(c);VC.paid.at(-1)[3]=c=>VW(c)+faultAct(c);VC.unp.at(-1)[3]=c=>(canPay(c)?PN(c):'')+faultAct(c);VC.deact.at(-1)[3]=c=>faultAct(c);
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a="pay"]');if(!el)return;const c=find(el.dataset.id);if(c&&c.userStatus=='Fault'){e.stopImmediatePropagation();e.preventDefault();toast(NOPAY,1)}},true);
+const _pm7=payModal;payModal=function(c){if(c.userStatus=='Fault')return toast(NOPAY,1);_pm7(c)};
+const _cp7=confirmPay;confirmPay=function(id){const c=find(id);if(c&&c.userStatus=='Fault')return toast(NOPAY,1);return _cp7(id)};
+// ONE customer details card
+function profile(c){c=find(c.customerId)||c;const ps=P.filter(p=>p.customerId==c.customerId).sort((a,b)=>b.paymentDate.localeCompare(a.paymentDate)),l=ps[0],f=c.userStatus=='Fault',id=esc(c.customerId);
+const F=(k,v)=>`<div>${k}<b>${v}</b></div>`,cap=k=>k.replace(/\b\w/g,m=>m.toUpperCase());
+const ex=Object.entries(c.extra||{}).filter(([k,v])=>sv(v)).map(([k,v])=>F(esc(cap(k)),esc(sv(v)))).join('');
+modal(`<h2 class="mt">Customer Details</h2><div class="kv cd">${F('A.no',dash(c.ano))}${F('Box.no',dash(c.customerId))}${F('Name',dash(c.name))}${F('Phone',dash(c.mobile))}${F('Area',dash(c.area))}${F('STB-number',dash(c.connectionNumber))}${F('Package',c.package?bd(fm(c.package),'g'):'-')}${F('Amount',c.monthlyAmount?bd(fm(c.monthlyAmount),'g'):'-')}<div class="full">Address<b>${dash(c.address)}</b></div>${F('Status',pb(c))}${F('Fault',bd(f?'FAULT':'NO',f?'r':'g'))}${F('Due date',c.dueDate?fd(c.dueDate):'-')}${F('Last payment',l?fd(l.paymentDate)+' · '+fm(l.amount)+' · '+dash(l.paymentMethod):'-')}${F('Total paid',fm(ps.reduce((x,p)=>x+p.amount,0)))}${ex}</div>
+<div style="color:var(--m);font-size:12px;margin-bottom:4px">Payment history</div>${ps.slice(0,5).map(p=>`<div style="display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--s2)"><span>${fd(p.paymentDate)}</span><span>${dash(p.paymentMethod)}</span><b>${fm(p.amount)}</b></div>`).join('')||'<div class="empty" style="padding:12px">No payments yet</div>'}
+<div class="ac" style="margin-top:12px">${canPay(c)?`<button class="btn p" data-a="pay" data-id="${id}">Pay</button>`:''}${f?`<button class="btn ok" data-a="act" data-id="${id}">Repaired</button>`:`<button class="btn d" data-a="deact" data-id="${id}">Fault Box</button>`}</div>`)}
+// Dashboard search result: View CTA
+result=function(c){const f=c.userStatus=='Fault',id=esc(c.customerId);return`<div class="card res" data-cid="${id}"><div><div style="font-size:18px;font-weight:700">${dash(c.name)}</div><div style="color:var(--m);margin:4px 0">Box ${dash(c.customerId)} · ${dash(c.mobile)} · STB ${dash(c.connectionNumber)}</div><div style="color:var(--m)">${dash(c.area)} · ${c.monthlyAmount?fm(c.monthlyAmount):'-'}</div><div style="margin-top:8px">${pb(c)} ${bd(f?'FAULT':'NO FAULT',f?'r':'g')}</div></div><div class="ac"><button class="btn" data-a="view" data-id="${id}">View</button>${canPay(c)?`<button class="btn p" data-a="pay" data-id="${id}">Pay</button>`:''}${f?`<button class="btn ok" data-a="act" data-id="${id}">Repaired</button>`:`<button class="btn d" data-a="deact" data-id="${id}">Fault Box</button>`}</div></div>`};
+// whole row clickable (buttons/links/checkboxes excluded)
+document.addEventListener('click',e=>{if(e.defaultPrevented)return;const t=e.target;if(t.closest('button,a,input,select,textarea,label,.selcell'))return;const r=t.closest('[data-cid]');if(!r)return;const c=find(r.dataset.cid);if(c)profile(c);else toast('Customer not found',1)});
+// Payment History / Reports: Date first; selected-rows-only copy
+SCH.splice(0,SCH.length,['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['stb','STB-number'],['package','Package','r'],['amount','Amount Paid','r'],['paymentMethod','Method'],['status','Status','c']);
+SCR.splice(0,SCR.length,['paymentDate','Date'],['customerId','Box.no'],['customerName','Customer'],['mobile','Phone'],['stb','STB-number'],['area','Area'],['package','Package','r'],['amount','Amount','r'],['paymentMethod','Method'],['status','Status','c']);
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a="sel"],[data-a="selall"]');if(!el)return;e.stopImmediatePropagation();
+if(el.dataset.a=='sel'){const id=el.dataset.id;ST.sel.has(id)?ST.sel.delete(id):ST.sel.add(id)}else{const ids=[...document.querySelectorAll('input[data-a="sel"]')].map(x=>x.dataset.id),all=ids.length&&ids.every(i=>ST.sel.has(i));ids.forEach(i=>all?ST.sel.delete(i):ST.sel.add(i))}draw()},true);
+copyRep=async function(){const rows=recs(1).filter(r=>ST.sel.has(r.paymentId));if(!rows.length)return toast('Select at least one payment',1);const t=txt(rows,'\t');
+try{await navigator.clipboard.writeText(t)}catch(e){const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(z){}x.remove()}toast('Copied '+rows.length+' selected row'+(rows.length>1?'s':''))};
+// safety net: never show undefined / null / NaN
+function scrub(){document.querySelectorAll('#root,#ov').forEach(r=>{const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(/undefined|null|NaN|\[object Object\]/.test(n.nodeValue)&&!n.parentElement.closest('textarea,input,script,style'))n.nodeValue=n.nodeValue.replace(/₹\s*(undefined|null|NaN)/g,'₹0').replace(/\b(undefined|null|NaN)\b|\[object Object\]/g,'-')}});
+document.querySelectorAll('#root .gs td,#root .rt td').forEach(td=>{if(!td.children.length&&!td.textContent.trim())td.textContent='-'})}
+const _dr=draw;draw=function(){_dr();scrub()};const _mo=modal;modal=function(h){_mo(h);scrub()};
+ST.sync.busy=true;draw();hydrate();
+</script>
+<script>// ===== v8: modal close UX, a11y, touch targets =====
+let _lf=null,_op=false;
+closeM=function(){const o=$('#ov');if(!o)return;o.remove();document.body.classList.remove('mo');const r=$('#root');if(r)r.inert=false;
+ if(!_op&&_lf&&_lf.isConnected){try{_lf.focus()}catch(e){}}if(!_op)_lf=null};
+const _m8=modal;
+modal=function(h){if(!$('#ov'))_lf=document.activeElement;_op=true;try{_m8(h)}finally{_op=false}
+ const md=$('#ov .md');if(!md)return;md.setAttribute('role','dialog');md.setAttribute('aria-modal','true');
+ const t=md.querySelector('h2');if(t){t.id='mt8';md.setAttribute('aria-labelledby','mt8');if(!t.classList.contains('mt'))t.style.paddingRight='48px'}
+ md.insertAdjacentHTML('afterbegin','<button type="button" class="mx" data-a="close" aria-label="Close" title="Close">\u00d7</button>');
+ document.body.classList.add('mo');const r=$('#root');if(r)r.inert=true;md.querySelector('.mx').focus({preventScroll:true})};
+document.addEventListener('keydown',e=>{
+ if(e.key=='Escape'){if($('#ov')){e.preventDefault();closeM()}else if(ST.drawer){ST.drawer=false;draw()}return}
+ if(e.key!='Tab')return;const o=$('#ov');if(!o)return;
+ const f=[...o.querySelectorAll('button,a[href],input,select,textarea')].filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;
+ const a=f[0],z=f[f.length-1],cur=document.activeElement;
+ if(e.shiftKey&&(cur==a||!o.contains(cur))){e.preventDefault();z.focus()}else if(!e.shiftKey&&(cur==z||!o.contains(cur))){e.preventDefault();a.focus()}});
+function a11y(){const r=$('#root');if(!r)return;
+ r.querySelectorAll('.mh button[data-a="drawer"]').forEach(b=>{b.setAttribute('aria-label',ST.drawer?'Close menu':'Open menu');b.setAttribute('aria-expanded',!!ST.drawer)});
+ r.querySelectorAll('.nv.on').forEach(b=>b.setAttribute('aria-current','page'));
+ r.querySelectorAll('#q').forEach(i=>i.setAttribute('aria-label','Search customers'));
+ r.querySelectorAll('select').forEach(s=>{if(!s.getAttribute('aria-label'))s.setAttribute('aria-label',(s.options[0]||{}).text||'Filter')});
+ r.querySelectorAll('input[data-k="min"]').forEach(i=>i.setAttribute('aria-label','Minimum amount'));
+ r.querySelectorAll('input[data-k="max"]').forEach(i=>i.setAttribute('aria-label','Maximum amount'));
+ r.querySelectorAll('input[type="date"],input[type="month"]').forEach(i=>i.setAttribute('aria-label',i.dataset.a=='to'?'To date':i.dataset.a=='from'?'From date':'Date'));
+ r.querySelectorAll('input[data-a="selall"]').forEach(i=>i.setAttribute('aria-label','Select all payments on this page'));
+ r.querySelectorAll('input[data-a="sel"]').forEach(i=>i.setAttribute('aria-label','Select payment'));
+ if(ST.drawer&&matchMedia('(max-width:767px)').matches)r.insertAdjacentHTML('beforeend','<div class="bk" data-a="drawer" aria-hidden="true"></div>')}
+const _d8=draw;draw=function(){_d8();a11y()};
+a11y();
+</script>
+</body></html>
